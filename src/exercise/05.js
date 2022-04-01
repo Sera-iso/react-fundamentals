@@ -4,9 +4,13 @@
 import * as React from 'react'
 import '../box-styles.css'
 
-const smallBox = <div className="box box--small">small lightblue box</div>
-const mediumBox = <div className="box box--medium">medium pink box</div>
-const largeBox = <div className="box box--large">large orange box</div>
+function Box({className = '', style, ...otherProps}) { 
+return <div className={`box ${className}`.trim()} style={{fontStyle: 'italic', ...style}} {...otherProps} />
+}
+
+const smallBox = <Box className="box--small" style={{backgroundColor: 'lightblue'}}>small lightblue box</Box>
+const mediumBox = <Box className="box--medium" style={{backgroundColor: 'pink'}}>medium pink box</Box>
+const largeBox = <Box className="box--large" style={{backgroundColor: 'orange'}}>large orange box</Box>
 
 function App() {
   return (
@@ -14,6 +18,7 @@ function App() {
       {smallBox}
       {mediumBox}
       {largeBox}
+      <Box>Sizeless box</Box>
     </div>
   )
 }

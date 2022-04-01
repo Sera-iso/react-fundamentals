@@ -2,22 +2,18 @@
   border: 1px solid #333;
   display: flex;
   flex-direction: column;
-  font-style: italic;
   justify-content: center;
   text-align: center;
 }
 .box--large {
-  background-color: orange;
   height: 270px;
   width: 270px;
 }
 .box--medium {
-  background-color: pink;
   height: 180px;
   width: 180px;
 }
 .box--small {
-  background-color: lightblue;
   height: 90px;
   width: 90px;
 }
