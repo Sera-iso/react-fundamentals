@@ -4,12 +4,18 @@
 import * as React from 'react'
 
 function UsernameForm({ onSubmitUsername }) {
-  const usernameInputRef= React.useRef()
+  // const usernameInputRef= React.useRef()
 
   function handleSubmit(event) {
     event.preventDefault()
-    // record the value of an input via `ref`
-    const value = usernameInputRef.current.value
+    // 1. record the value of an input via `id`
+    const value = event.target.usernameInput.value
+    // 2. record the value of an input via `ref`
+    // const value = usernameInputRef.current.value
+    // 3. record the value of an input via `index`
+    // const value = event.target.elements[0].value
+    // note: this is dangerous for scalability as if there are more
+    // than 1 element we will need to track all indexes
 
     onSubmitUsername(value)
   }
@@ -19,7 +25,7 @@ function UsernameForm({ onSubmitUsername }) {
       <div>
         <label htmlFor="usernameInput">Username:</label>
         <input 
-        ref={usernameInputRef} 
+        // ref={usernameInputRef} 
         id="usernameInput" 
         type="text" />
       </div>
