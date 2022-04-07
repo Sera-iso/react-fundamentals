@@ -4,32 +4,32 @@
 import * as React from 'react'
 
 function UsernameForm({ onSubmitUsername }) {
-  // const usernameInputRef= React.useRef()
+  const [error, setError] = React.useState(null)
 
   function handleSubmit(event) {
     event.preventDefault()
-    // 1. record the value of an input via `id`
     const value = event.target.usernameInput.value
-    // 2. record the value of an input via `ref`
-    // const value = usernameInputRef.current.value
-    // 3. record the value of an input via `index`
-    // const value = event.target.elements[0].value
-    // note: this is dangerous for scalability as if there are more
-    // than 1 element we will need to track all indexes
 
     onSubmitUsername(value)
   }
+
+  function handleChange(event) {
+    const { value } = event.target
+    const isValid = value === value.toLowerCase()
+    setError(isValid ? null : 'Username must be lower case')
+    }
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="usernameInput">Username:</label>
         <input 
-        // ref={usernameInputRef} 
+        onChange={handleChange}
         id="usernameInput" 
         type="text" />
       </div>
-      <button type="submit">Submit</button>
+      <div style= {{color: 'red'}}>{error}</div>
+      <button disabled={Boolean(error)}type="submit">Submit</button>
     </form>
   )
 }
